@@ -1,0 +1,92 @@
+SystemLabel	siesta
+
+NumberOfSpecies	4
+NumberOfAtoms	19
+
+%block ChemicalSpecieslabel
+    1 6 C
+    2 1 H
+    3 7 N
+    4 8 O
+%endblock ChemicalSpecieslabel
+
+LatticeConstant	1.0 Ang
+%block LatticeVectors
+    24.585499999999996     0.000000000000000     0.000000000000000 
+    0.000000000000000     24.300840000000001     0.000000000000000 
+    0.000000000000000     0.000000000000000     24.248799999999999 
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+    11.923870000     10.948410000     11.833480000 1
+    12.365600000     10.948410000     13.310200000 1
+    12.486120000     12.128990000     11.007980000 1
+    12.199470000     13.494070000     11.641430000 1
+    13.983020000     11.985770000     10.725070000 1
+    11.983420000     12.119970000     10.030730000 2
+    10.124000000     11.801750000     11.398680000 2
+    12.245900000     10.000000000     11.384620000 2
+    10.000000000     11.313980000     12.660950000 2
+    10.124000000     10.095070000     11.398680000 2
+    11.127880000     13.634720000     11.813880000 2
+    12.535120000     14.300840000     10.980700000 2
+    12.718720000     13.613460000     12.598260000 2
+    14.307640000     12.740220000     10.000000000 2
+    14.210220000     11.001720000     10.302740000 2
+    14.585500000     12.122840000     11.628300000 2
+    10.463150000     10.948410000     11.833480000 3
+    11.570300000     10.948410000     14.248800000 4
+    13.694930000     10.948410000     13.551180000 4
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+###K-Point Mesh###
+%block kgrid_Monkhorst_Pack
+1   0   0   0.0
+0   1   0   0.0
+0   0   1   0.0
+%endblock kgrid_Monkhorst_Pack
+
+
+###SCF PARAMS###
+MeshCutoff          250 Ry
+PAO.BasisType       split
+PAO.BasisSize       DZP
+PAO.EnergyShift     0.1 eV
+XC.functional VDW
+XC.authors KBM
+MaxSCFIterations    1000
+SCF.MustConverge    T
+DM.MixingWeight     0.1
+DM.NumberPulay      20
+DM.Tolerance        1.d-5
+DM.UseSaveDM        T
+ElectronicTemperature 300 K
+DirectPhi           T
+
+###DIAGONALIZATION###
+SolutionMethod      diagon
+
+###DIAG-ALGORITHM###
+Diag.Algorithm ELPA # MRRR
+
+###CACHE WAVEFUNC###
+# Diag.WFS.Cache cdf
+
+###K-PARALLELIZATION###
+Diag.ParallelOverK  F
+
+###MOLECULAR DYNAMICS###
+MD.TypeOfRun        CG
+MD.NumCGsteps       2000
+MD.MaxForceTol      0.01 eV/Ang
+MD.VariableCell     F
+MD.UseSaveXV        T
+MD.UseSaveCG        T
+
+###MOLECULAR DYNAMICS###
+WriteForces         T
+WriteMDHistory      T
+WriteMDXMol         T
+

@@ -1,0 +1,88 @@
+SystemLabel	siesta
+
+NumberOfSpecies	5
+NumberOfAtoms	14
+
+%block ChemicalSpecieslabel
+    1 6 C
+    2 1 H
+    3 7 N
+    4 8 O
+    5 16 S
+%endblock ChemicalSpecieslabel
+
+LatticeConstant	1.0 Ang
+%block LatticeVectors
+    24.326750000000001     0.000000000000000     0.000000000000000 
+    0.000000000000000     23.094000000000001     0.000000000000000 
+    0.000000000000000     0.000000000000000     24.347610000000000 
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+    11.927040000     10.940740000     11.940610000 1
+    12.348830000     10.940740000     13.422160000 1
+    12.486700000     12.155510000     11.188640000 1
+    12.250430000     10.000000000     11.477050000 2
+    11.963750000     12.298090000     10.238090000 2
+    12.344920000     13.071930000     11.773850000 2
+    14.326750000     13.094000000     10.000000000 2
+    10.000000000     11.073780000     12.837780000 2
+    10.122310000     11.794080000     11.505810000 2
+    10.122310000     10.087400000     11.505810000 2
+    10.461460000     10.940740000     11.940610000 3
+    11.537180000     10.940740000     14.347610000 4
+    13.673860000     10.940740000     13.685760000 4
+    14.264270000     12.011070000     10.790650000 5
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+###K-Point Mesh###
+%block kgrid_Monkhorst_Pack
+1   0   0   0.0
+0   1   0   0.0
+0   0   1   0.0
+%endblock kgrid_Monkhorst_Pack
+
+
+###SCF PARAMS###
+MeshCutoff          250 Ry
+PAO.BasisType       split
+PAO.BasisSize       DZP
+PAO.EnergyShift     0.1 eV
+XC.functional VDW
+XC.authors KBM
+MaxSCFIterations    1000
+SCF.MustConverge    T
+DM.MixingWeight     0.1
+DM.NumberPulay      20
+DM.Tolerance        1.d-5
+DM.UseSaveDM        T
+ElectronicTemperature 300 K
+DirectPhi           T
+
+###DIAGONALIZATION###
+SolutionMethod      diagon
+
+###DIAG-ALGORITHM###
+Diag.Algorithm ELPA # MRRR
+
+###CACHE WAVEFUNC###
+# Diag.WFS.Cache cdf
+
+###K-PARALLELIZATION###
+Diag.ParallelOverK  F
+
+###MOLECULAR DYNAMICS###
+MD.TypeOfRun        CG
+MD.NumCGsteps       2000
+MD.MaxForceTol      0.01 eV/Ang
+MD.VariableCell     F
+MD.UseSaveXV        T
+MD.UseSaveCG        T
+
+###MOLECULAR DYNAMICS###
+WriteForces         T
+WriteMDHistory      T
+WriteMDXMol         T
+

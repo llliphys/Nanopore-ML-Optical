@@ -1,0 +1,97 @@
+SystemLabel	siesta
+
+NumberOfSpecies	4
+NumberOfAtoms	24
+
+%block ChemicalSpecieslabel
+    1 6 C
+    2 1 H
+    3 7 N
+    4 8 O
+%endblock ChemicalSpecieslabel
+
+LatticeConstant	1.0 Ang
+%block LatticeVectors
+    27.379030000000000     0.000000000000000     0.000000000000000 
+    0.000000000000000     25.323910000000001     0.000000000000000 
+    0.000000000000000     0.000000000000000     25.255520000000004 
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+    11.924600000     10.926230000     12.843860000 1
+    12.357120000     10.926230000     14.319450000 1
+    12.458990000     12.148790000     12.084790000 1
+    13.981320000     12.157750000     11.919460000 1
+    14.432560000     13.296350000     10.999810000 1
+    15.956390000     13.363200000     10.908330000 1
+    11.995650000     12.180900000     11.090120000 2
+    16.385990000     13.546230000     11.899480000 2
+    16.355340000     12.411190000     10.542450000 2
+    14.005610000     13.146380000     10.000000000 2
+    14.042050000     14.249620000     11.378000000 2
+    14.460410000     12.280150000     12.896990000 2
+    12.266730000     10.000000000     12.367040000 2
+    10.126060000     10.072890000     12.409060000 2
+    12.148490000     13.068410000     12.598250000 2
+    17.379030000     14.507070000     10.001420000 2
+    10.000000000     11.329000000     13.652380000 2
+    10.126060000     11.779570000     12.409060000 2
+    14.316810000     11.199420000     11.505530000 2
+    16.007530000     15.323910000     10.337830000 2
+    10.465210000     10.926230000     12.843860000 3
+    16.362900000     14.429440000     10.002260000 3
+    11.559450000     10.926230000     15.255520000 4
+    13.685770000     10.926230000     14.564160000 4
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+###K-Point Mesh###
+%block kgrid_Monkhorst_Pack
+1   0   0   0.0
+0   1   0   0.0
+0   0   1   0.0
+%endblock kgrid_Monkhorst_Pack
+
+
+###SCF PARAMS###
+MeshCutoff          250 Ry
+PAO.BasisType       split
+PAO.BasisSize       DZP
+PAO.EnergyShift     0.1 eV
+XC.functional VDW
+XC.authors KBM
+MaxSCFIterations    1000
+SCF.MustConverge    T
+DM.MixingWeight     0.1
+DM.NumberPulay      20
+DM.Tolerance        1.d-5
+DM.UseSaveDM        T
+ElectronicTemperature 300 K
+DirectPhi           T
+
+###DIAGONALIZATION###
+SolutionMethod      diagon
+
+###DIAG-ALGORITHM###
+Diag.Algorithm ELPA # MRRR
+
+###CACHE WAVEFUNC###
+# Diag.WFS.Cache cdf
+
+###K-PARALLELIZATION###
+Diag.ParallelOverK  F
+
+###MOLECULAR DYNAMICS###
+MD.TypeOfRun        CG
+MD.NumCGsteps       2000
+MD.MaxForceTol      0.01 eV/Ang
+MD.VariableCell     F
+MD.UseSaveXV        T
+MD.UseSaveCG        T
+
+###MOLECULAR DYNAMICS###
+WriteForces         T
+WriteMDHistory      T
+WriteMDXMol         T
+
