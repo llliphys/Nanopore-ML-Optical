@@ -1,0 +1,11 @@
+numpy
+scipy
+pandas
+matplotlib
+rdkit
+scikit-learn
+pytorch
+tensorflow
+xgboost
+ase
+pymatgen
