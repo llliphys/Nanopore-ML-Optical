@@ -1,0 +1,79 @@
+SystemLabel	siesta
+
+NumberOfSpecies	4
+NumberOfAtoms	13
+
+%block ChemicalSpecieslabel
+    1 6 C
+    2 1 H
+    3 7 N
+    4 8 O
+%endblock ChemicalSpecieslabel
+
+LatticeConstant	1.0 Ang
+%block LatticeVectors
+    23.760379984752692     0.000000000000000     0.000000000000000 
+    0.000000000000000     23.068809985199870     0.000000000000000 
+    0.000000000000000     0.000000000000000     24.203879984324761 
+%endblock LatticeVectors
+
+AtomicCoordinatesFormat  Ang
+%block AtomicCoordinatesAndAtomicSpecies
+    11.928281531     10.939579596     11.708311828 1
+    12.415173987     10.921544639     13.185372508 1
+    12.536173700     12.155153173     10.991226876 1
+    10.579039219     10.931474695     13.494987263 2
+    12.307280592      9.999157173     11.241022735 2
+    12.325278040     12.127318097      9.897250926 2
+    12.120394984     13.101299861     11.414005221 2
+    13.636396039     12.160050592     11.156812623 2
+    10.035952046     11.775617706     11.180419611 2
+    10.024109417     10.099834656     11.204974304 2
+    10.396342947     10.941698873     11.705421563 3
+    11.401407829     10.918217546     14.085344891 4
+    13.602062657     10.922581684     13.481440510 4
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+###K-Point Mesh###
+%block kgrid_Monkhorst_Pack
+1   0   0   0.0
+0   1   0   0.0
+0   0   1   0.0
+%endblock kgrid_Monkhorst_Pack
+
+
+###SCF PARAMS###
+MeshCutoff          250 Ry
+PAO.BasisType       split
+PAO.BasisSize       DZP
+PAO.EnergyShift     0.1 eV
+XC.functional VDW
+XC.authors KBM
+MaxSCFIterations    2000
+SCF.MustConverge    T
+DM.MixingWeight     0.01
+DM.NumberPulay      20
+DM.Tolerance        1.d-5
+DM.UseSaveDM        T
+ElectronicTemperature 300 K
+DirectPhi           T
+
+###DIAGONALIZATION###
+SolutionMethod      diagon
+
+###DIAG-ALGORITHM###
+# Diag.Algorithm ELPA
+
+###CACHE WAVEFUNC###
+# Diag.WFS.Cache cdf
+
+###PARALLELIZATION###
+Diag.ParallelOverK  F
+
+###MOLECULAR DYNAMICS###
+MD.TypeOfRun        CG
+MD.NumCGsteps       0
+MD.UseSaveXV        T
+MD.UseSaveCG        T
+
