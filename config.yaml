@@ -1,0 +1,76 @@
+"""Centralised configuration dataclasses for the NanoporeBiosensing pipeline.
+
+Note: This module is currently **not** imported by ``main.py`` — all
+parameters are still hardcoded there.  It is provided as a future-ready
+configuration layer.
+"""
+
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass, field
+
+import torch
+
+
+@dataclass
+class DataConfig:
+    """Parameters controlling data loading and preprocessing."""
+
+    root_dir: str = os.path.dirname(os.path.abspath(__file__))
+    nanopore_name: str = "GRAPHENE"
+    molecule_name: str = "ALA"
+    num_angle_feats: int = 3
+    num_dist_feats: int = 100
+    num_elec_feats: int = 200
+    min_photo_energy: float = 0.0
+    max_photo_energy: float = 2.0
+    test_size: float = 0.2
+    n_components: int = 10
+    log_base: float = 10.0
+    log_eps: float = 1.0
+
+
+@dataclass
+class TrainConfig:
+    """Parameters controlling the training loop."""
+
+    num_epochs: int = 1000
+    lr_rate: float = 1e-3
+    l1_lambda: float | None = None
+    weight_decay: float | None = None
+    random_state: int = 1234
+    print_every: int = 100
+    device: str = "cuda" if torch.cuda.is_available() else "cpu"
+
+
+@dataclass
+class ModelConfig:
+    """Parameters defining the MLP architecture."""
+
+    hidden_dims: tuple[int, ...] = (128, 128, 128)
+    final_activation: str | None = None
+    dropout: float = 0.2
+
+
+@dataclass
+class PlotConfig:
+    """Parameters controlling visualisation output."""
+
+    set_yscale_log: bool = False
+    figsave_dir: str = "/path/to/save/figures"
+    n_groups_plot: int = 15
+    group_size_plot: int = 3
+
+
+@dataclass
+class Config:
+    """Top-level configuration composing all sub-configs."""
+
+    data: DataConfig = field(default_factory=DataConfig)
+    train: TrainConfig = field(default_factory=TrainConfig)
+    model: ModelConfig = field(default_factory=ModelConfig)
+    plot: PlotConfig = field(default_factory=PlotConfig)
+
+
+cfg = Config()

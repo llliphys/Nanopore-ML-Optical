@@ -1,11 +1,17 @@
-numpy
-scipy
-pandas
-matplotlib
-rdkit
-scikit-learn
-pytorch
-tensorflow
-xgboost
-ase
-pymatgen
+# Core scientific stack
+numpy>=1.23
+scipy>=1.10
+pandas>=1.5
+matplotlib>=3.7
+
+# Classic learning
+scikit-learn>=1.3
+
+# Deep learning
+torch>=2.0
+
+# Explainability
+shap>=0.44
+
+# Utilities
+tqdm>=4.65
