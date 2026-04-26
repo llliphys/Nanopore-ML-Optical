@@ -83,9 +83,8 @@ Expected location: `<project_root>/ML/datasets/`
 
 # 👨‍🔬 Use Case
 This pipeline is designed for:
-- Computational materials science
-- Nanopore-based biosensing
+- Computational materials science and biophysics
+- Nanopore-based optical biosensing
 - Optical spectroscopy prediction
 - Machine learning-assisted DFT simulations
-- High-throughput materials screening
 
