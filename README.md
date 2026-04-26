@@ -53,6 +53,8 @@ project/
 
 # ⚙️ Installation Guide
 
+The Python version used: Python 3.9.16
+
 ## 1. Create environment (recommended)
 
 ```
