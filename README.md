@@ -1,5 +1,5 @@
 
-# 🧠 Machine Learning Molecular Absorption Spectra in Graphene Nanopores
+# Machine Learning Molecular Absorption Spectra in Graphene Nanopores
 
 This project implements a **machine learning (ML) pipeline** using high-throughput DFT datasets for predicting optical absorption spectra of biomolecules (amino acids) confined within 2D material (graphene) nanopores.
 
