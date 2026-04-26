@@ -1,7 +1,7 @@
 
 # Machine Learning Biomolecular Absorption Spectra in Graphene Nanopores
 
-This project implements a **machine learning (ML) pipeline** using high-throughput DFT datasets for predicting optical absorption spectra of biomolecules (amino acids) confined within 2D material (graphene) nanopores.
+This project implements a **machine learning (ML) pipeline** using high-throughput density-functional theory (DFT) generated datasets for predicting optical absorption spectra of biomolecules (amino acids) confined within 2D material (graphene) nanopores.
 
 - 📊 Data-driven features (inter-atomic distances, electronic transition energies)
 - 🧮 Principal component Analysis (PCA) based dimensionality reduction
