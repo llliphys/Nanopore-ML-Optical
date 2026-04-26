@@ -79,6 +79,13 @@ def plot_model_scores(
         cbar.set_ticks([min(r2_list), max(r2_list)])
         cbar.ax.set_title(r"$R^2$", fontsize=20)
 
+        # Fix tick labels only for better visualization, since Max(R2) is infinitely close to 1 for both traning and test data.
+        # Use this fix carefully, always based on the true range of the R2 values in both training and test cases. 
+        if i == 0: # train data
+            cbar.set_ticklabels([f"${min(r2_list):.2f}$", "$1.00$"])        
+        if i == 1: # test data
+            cbar.set_ticklabels([f"${min(r2_list):.2f}$", "$1.00$"])  
+
         ax.set_xlabel(r"$\alpha_{True} \times 10^4 \ \mathrm{(1/cm)}$", fontsize=25)
         if i == 0:
             ax.set_ylabel(r"$\alpha_{Pred} \times 10^4 \ \mathrm{(1/cm)}$", fontsize=25)
