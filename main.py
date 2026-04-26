@@ -84,7 +84,7 @@ def main() -> None:
     # Create Figure-saving Folder
     # -------------------------
 
-    figsave_dir = "/home/llli/ShareData/NanodiagProject/DPG-Meeting-Dresden-2026/Figures"
+    figsave_dir = "/the_path_of_the_directory_saving_figures/"
     os.makedirs(figsave_dir, exist_ok=True)
 
     # -------------------------
