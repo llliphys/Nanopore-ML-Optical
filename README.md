@@ -72,7 +72,7 @@ python main.py
 ```
 
 # 📊 DFT Datasets
-Expected location: `<project_root>/ML/datasets/`
+Expected location: `<project_root>/datasets/`
 
 # 🚀 Future Improvements
 - YAML-based configuration
