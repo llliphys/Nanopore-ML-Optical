@@ -10,7 +10,7 @@ This project implements a **machine learning (ML) pipeline** using high-throughp
 - PyTorch-based multilayer perceptron (MLP) regression
 - Statistical evaluation and data visualization
 - Feature importance analysis (Permutation + SHAP)
-- Hyper-parameter tuning using grid search method
+- Hyper-parameter tuning support using grid search method
 - Data visualization and publication-ready plots
 
 ---
