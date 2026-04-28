@@ -3,30 +3,22 @@
 
 This project implements a **machine learning (ML) pipeline** using high-throughput density-functional theory (DFT) generated datasets for predicting optical absorption spectra of biomolecules (amino acids) confined within 2D material (graphene) nanopores.
 
-- 📊 Data-driven features (inter-atomic distances, electronic transition energies)
-- 🧮 Principal component Analysis (PCA) based dimensionality reduction
-- 🤖 PyTorch-based multilayer perceptron (MLP) regression
-- 📈 Statistical evaluation and data visualization
-- 🔍 Feature importance analysis (Permutation + SHAP)
-- ⚙️ Hyper-parameter tuning using grid search method
+# Key Features
+
+- Physically-informed features (structural and electronic descriptors)
+- Principal component Analysis (PCA) based dimensionality reduction
+- PyTorch-based multilayer perceptron (MLP) regression
+- Statistical evaluation and data visualization
+- Feature importance analysis (Permutation + SHAP)
+- Hyper-parameter tuning using grid search method
+- Data visualization and publication-ready plots
 
 ---
 
-# 🚀 Key Features
-
-- Modular, scalable ML architecture
-- PCA compression of spectra (efficient learning)
-- Full pipeline from raw (DFT) data → ML prediction → visualization
-- Feature importance analysis (Permutation & SHAP)
-- Hyperparameter tuning support
-- Publication-ready plots
-
----
-
-# 📁 Project Structure
+# Project Structure
 
 ```
-project/
+nanopore_ml_optical/
 ├── config.py
 ├── main.py
 ├── dataload/
@@ -51,7 +43,7 @@ project/
 
 ---
 
-# ⚙️ Installation Guide
+# Installation Guide
 
 The Python version used: Python 3.9.16
 
@@ -68,22 +60,22 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-# ▶️ Running Pipeline
+# Running Pipeline
 ```
 python main.py
 ```
 
-# 📊 DFT Datasets
+# DFT Datasets
 Expected location: `<project_root>/datasets/`
 
-# 🚀 Future Improvements
+# Future Improvements
 - YAML-based configuration
 - AutoEncoder & other networks
 - Cross-validation (k-fold)
 - Full Integration with DFT simulation
 - GPU acceleration optimization
 
-# 👨‍🔬 Use Case
+# Use Case
 This pipeline is designed for:
 - Computational materials science and biophysics
 - Nanopore-based optical biosensing
