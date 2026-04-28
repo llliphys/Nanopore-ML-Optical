@@ -3,4 +3,4 @@ __pycache__/
 .ipynb_checkpoints/
 .codex/
 .vscode/
-config/
+config.yaml
