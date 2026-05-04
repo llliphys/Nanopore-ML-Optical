@@ -1,9 +1,9 @@
 
 # Machine Learning Biomolecular Absorption Spectra in Graphene Nanopores
 
-This project implements a **machine learning (ML) pipeline** using high-throughput density-functional theory (DFT) generated datasets for predicting optical absorption spectra of biomolecules (amino acids) confined within 2D material (graphene) nanopores.
+This project implements a **machine learning (ML) pipeline** using high-throughput physically generated datasets for predicting optical absorption spectra of biomolecules (amino acids) confined within 2D material (graphene) nanopores.
 
-# Key Features
+## Key Features
 
 - Physically-informed features (structural and electronic descriptors)
 - Principal component Analysis (PCA) based dimensionality reduction
@@ -13,9 +13,8 @@ This project implements a **machine learning (ML) pipeline** using high-throughp
 - Hyper-parameter tuning support using grid search method
 - Data visualization and publication-ready plots
 
----
 
-# Project Structure
+## Project Structure
 
 ```
 nanopore_ml_optical/
@@ -41,44 +40,43 @@ nanopore_ml_optical/
 └── README.md
 ```
 
----
 
-# Installation Guide
+## Installation Guide
 
 The Python version used: Python 3.9.16
 
-## 1. Create environment (recommended)
+### 1. Create environment (recommended)
 
 ```
 python -m venv venv
 source venv/bin/activate  
 ```
 
-## 2. Install dependencies
+### 2. Install dependencies
 
 ```
 pip install -r requirements.txt
 ```
 
-# Running Pipeline
+### 3. Running Pipeline
 ```
 python main.py
 ```
 
-# DFT Datasets
+## Simulation Datasets
 Expected location: `<project_root>/datasets/`
 
-# Future Improvements
+## Future Improvements
 - YAML-based configuration
-- AutoEncoder & other networks
+- Other advanced models
 - Cross-validation (k-fold)
-- Full Integration with DFT simulation
 - GPU acceleration optimization
+- CI/CD pipeline integration
 
-# Use Case
+
+## Use Case
 This pipeline is designed for:
-- Computational materials science and biophysics
-- Nanopore-based optical biosensing
-- Optical spectroscopy prediction
-- Machine learning-assisted DFT simulations
+- Computational materials science, biophysics, and biotechnology
+- Nanoscale optical biosensing and spectroscopy prediction
+- Machine learning-assisted scientific modelling and simulations
 
