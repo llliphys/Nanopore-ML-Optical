@@ -48,8 +48,8 @@ The Python version used: Python 3.9.16
 ### 1. Create environment (recommended)
 
 ```
-python -m venv venv
-source venv/bin/activate  
+python3 -m venv .venv
+source .venv/bin/activate  
 ```
 
 ### 2. Install dependencies
@@ -71,6 +71,7 @@ Expected location: `<project_root>/datasets/`
 - Other advanced models
 - Cross-validation (k-fold)
 - GPU acceleration optimization
+- Add code linting and testing
 - CI/CD pipeline integration
 
 
