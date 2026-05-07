@@ -7,9 +7,6 @@ on:
   pull_request:
     branches: [main] # main, master, develop
 
-# permissions:
-#   contents: read
-
 jobs:
   build-deploy-ml-pipeline:
     runs-on: ubuntu-latest
