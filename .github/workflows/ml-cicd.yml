@@ -43,11 +43,18 @@ jobs:
           name: generated-figures
           path: results/figures/
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
         with:
-          image: llliphys/full-nanopore-ml-pipeline:tagname
-          registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/full-nanopore-ml-pipeline
 
