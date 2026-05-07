@@ -109,13 +109,10 @@ def plot_absorption_prediction(
     log_base: float = 10,
     log_eps: float = 1.0,
     set_yscale_log: bool = False,
-    n_groups_plot: int = 15,
-    group_size_plot: int = 3,
+    plot_nrows: int = 4,
+    plot_ncols: int = 4,
 ) -> None:
     """Plot true vs. predicted absorption spectra grouped into multi-panel figures.
-
-    Each figure shows ``group_size_plot`` samples stacked vertically, with
-    ``n_groups_plot`` figures generated in total.
 
     Args:
         X_test: Test feature matrix (unused but kept for interface consistency).
@@ -129,63 +126,66 @@ def plot_absorption_prediction(
         log_base: Base for optional log-scale display.
         log_eps: Offset for optional log-scale display.
         set_yscale_log: If ``True``, display Y axis in log scale.
-        n_groups_plot: Number of figure groups to generate.
-        group_size_plot: Number of samples per figure.
+        plot_nrows: Number of rows in the plot.
+        plot_ncols: Number of columns in the plot.
     """
     ensure_dir(figsave_dir)
 
-    for i in range(n_groups_plot):
-        indices = np.arange(group_size_plot * i, group_size_plot * (i + 1), 1)
+    fig, axs = plt.subplots(
+        plot_nrows, plot_ncols,
+        figsize=(6 * plot_ncols, 4 * plot_nrows),
+        sharex=True, sharey=True,
+    )
+    fig.subplots_adjust(wspace=0.1, hspace=0.3)
 
-        nrows, ncols = len(indices), 1
-        fig, axs = plt.subplots(
-            nrows, ncols,
-            figsize=(6 * ncols, 4 * nrows),
-            sharex=True, sharey=True,
-        )
-        fig.subplots_adjust(wspace=0, hspace=0)
+    if int(plot_nrows * plot_ncols) == 1:
+        axs = [axs]
+    else:
+        axs = axs.flat
 
-        if nrows == 1:
-            axs = [axs]
+    n_samples= Y_test.shape[0]
+    n_samples_to_plot = min(plot_nrows * plot_ncols, n_samples)
+    indices = np.random.choice(n_samples, size=n_samples_to_plot, replace=False)    
+
+    for count, idx in enumerate(indices):
+        ax = axs[count]
+
+        y_true = Y_test[idx, :]
+        y_pred = Y_test_pred[idx, :]
+        w = W_test[idx, :]
+        theta, phi, psi = X_test[idx, :3]
+
+        r2 = r2_score(y_true, y_pred)
+
+        if set_yscale_log:
+            y_true_plot = np.emath.logn(log_base, y_true + log_eps)
+            y_pred_plot = np.emath.logn(log_base, y_pred + log_eps)
+            ax.plot(w, y_true_plot, "k--", lw=3, alpha=0.5, label="true")
+            ax.plot(w, y_pred_plot, "b", lw=2, alpha=0.5, label="pred")
         else:
-            axs = axs.flat
+            ax.plot(w, y_true / ABSORPTION_SCALING_FACTOR, "k--", lw=3, alpha=0.5, label="true")
+            ax.plot(w, y_pred / ABSORPTION_SCALING_FACTOR, "b", lw=2, alpha=0.5, label="pred")
 
-        for count, idx in enumerate(indices):
-            ax = axs[count]
+        ax.set_title(fr"$(\theta, \phi, \psi) = ({theta:g}, {phi:g}, {psi:g})$", fontsize=20)
 
-            y_true = Y_test[idx, :]
-            y_pred = Y_test_pred[idx, :]
-            w = W_test[idx, :]
+        ax.text(
+            0.02, 0.95, f"$R^2 = {r2:.3f}$",
+            c="C1", fontsize=20,
+            transform=ax.transAxes, va="top",
+        )
+        ax.set_xlim(min_photo_energy, max_photo_energy)
+        ax.set_ylim(0, 25)
+        ax.set_xticks([0, 1, 2])
 
-            r2 = r2_score(y_true, y_pred)
-
-            if set_yscale_log:
-                y_true_plot = np.emath.logn(log_base, y_true + log_eps)
-                y_pred_plot = np.emath.logn(log_base, y_pred + log_eps)
-                ax.plot(w, y_true_plot, "k--", lw=3, alpha=0.5, label="true")
-                ax.plot(w, y_pred_plot, "b", lw=2, alpha=0.5, label="pred")
-            else:
-                ax.plot(w, y_true / ABSORPTION_SCALING_FACTOR, "k--", lw=3, alpha=0.5, label="true")
-                ax.plot(w, y_pred / ABSORPTION_SCALING_FACTOR, "b", lw=2, alpha=0.5, label="pred")
-
-            ax.text(
-                0.02, 0.95, f"$R^2 = {r2:.3f}$",
-                c="C1", fontsize=25,
-                transform=ax.transAxes, va="top",
+        if count == 0:
+            ax.legend(
+                loc="upper right", borderaxespad=0,
+                ncol=1, fontsize=20, frameon=False,
             )
-            ax.set_xlim(min_photo_energy, max_photo_energy)
-            ax.set_ylim(0, 25)
-            ax.set_xticks([0, 1, 2])
 
-            if count == 0:
-                ax.legend(
-                    loc="upper right", borderaxespad=0,
-                    ncol=1, fontsize=23, frameon=False,
-                )
-
-        outpath = os.path.join(figsave_dir, f"Prediction_{i:02d}_{dataset_name}.png")
-        plt.savefig(outpath, bbox_inches="tight")
-        plt.show()
+    outpath = os.path.join(figsave_dir, f"Prediction_{dataset_name}.png")
+    plt.savefig(outpath, bbox_inches="tight")
+    plt.show()
 
 
 def plot_pca_cumulative_variance(

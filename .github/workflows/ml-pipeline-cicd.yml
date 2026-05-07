@@ -1,0 +1,62 @@
+name: ML Pipeline CI/CD
+
+# trigger the workflow on any push events or pull requests to the main or other branch
+on:
+  push:
+    branches: [main] # main, master, develop
+  pull_request:
+    branches: [main] # main, master, develop
+
+# permissions:
+#   contents: read
+
+jobs:
+  build-deploy-ml-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Formatting and linting
+        run: |
+          black src tests scripts
+          ruff check src tests scripts --fix
+
+      - name: Run unit tests
+        run: pytest tests
+
+      - name: Run ML pipeline
+        run: python main.py
+
+      - name: Upload trained models
+        uses: actions/upload-artifact@v4
+        with:
+          name: trained-models
+          path: results/models/
+
+      - name: Upload generated figures
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-figures
+          path: results/figures/
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          image: llliphys/full-nanopore-ml-pipeline
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+

@@ -23,19 +23,19 @@ def ensure_dir(path: str) -> None:
 
 
 def load_nanopore_dataframe(
-    root_dir: str,
+    dataset_dir: str,
     dataset_name: str,
 ) -> tuple[pd.DataFrame, str]:
     """Load a nanopore dataset from a pickle file.
 
     Args:
-        root_dir: Project root directory containing the ``datasets/`` folder.
+        dataset_dir: Directory containing the ``.pkl`` file.
         dataset_name: Base name of the ``.pkl`` file (without extension).
 
     Returns:
         A tuple of (DataFrame, dataset_name).
     """
-    dataset_dir = os.path.join(root_dir, "datasets")
+    # dataset_dir = os.path.join(root_dir, "datasets")
     ensure_dir(dataset_dir)
 
     dataset_path = os.path.join(dataset_dir, f"{dataset_name}.pkl")

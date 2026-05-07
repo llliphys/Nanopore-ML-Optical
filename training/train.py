@@ -1,4 +1,4 @@
-"""PyTorch training loop with optional L1 regularisation."""
+"""PyTorch training loop with optional L1 / L2 regularisations."""
 
 from __future__ import annotations
 
