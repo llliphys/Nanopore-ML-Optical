@@ -1,7 +1,7 @@
 """
-The main entry point of the full ML pipeline integrating data loading, preprocessing, optinal PCA, 
-optional SHAP analysis, optional hyperparameter tuning, model training, prediction,
-evaluation, data visualisation, and CI/CD practices.
+The main entry point of the full ML pipeline, integrating data loading, data preprocessing, 
+principal component analysis (PCA), optional SHAP analysis, model training/validation/prediction,
+optional hyperparameter tuning, data visualisation, and CI/CD using Github Actions.
 """
 
 from __future__ import annotations
@@ -346,7 +346,7 @@ def main() -> None:
         train_loss_list = train_out["train_loss_list"]
         val_loss_list = train_out["val_loss_list"]
 
-        torch.save(model.state_dict(), model_save_dir + f"/model_{dataset_name}.pt")
+        torch.save(model.state_dict(),  f"{model_save_dir}/model_{dataset_name}.pt")
 
     Y_train_pred = predict_absorption(
         model=model,

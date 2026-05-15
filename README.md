@@ -12,6 +12,7 @@ This project implements a **machine learning (ML) pipeline** using high-throughp
 - Feature importance analysis (Permutation + SHAP)
 - Hyper-parameter tuning support using grid search method
 - Data visualization and publication-ready plots
+- CI/CD pipelines using GitHub Actions and Docker-image building/deploying
 
 
 ## Project Structure
@@ -43,7 +44,7 @@ nanopore_ml_optical/
 
 ## Installation Guide
 
-The Python version used: Python 3.9.16
+The Python version used: Python 3.10+
 
 ### 1. Create environment (recommended)
 
@@ -67,13 +68,9 @@ python main.py
 Expected location: `<project_root>/datasets/`
 
 ## Future Improvements
-- YAML-based configuration
-- Other advanced models
-- Cross-validation (k-fold)
-- GPU acceleration optimization
-- Add code linting and testing
-- CI/CD pipeline integration
-
+- Integrate additional advanced models (e.g., Autoencoder)
+- Enable GPU-accelerated model training and inference
+- Support cloud-based deployment on platforms such as AWS
 
 ## Use Case
 This pipeline is designed for:
