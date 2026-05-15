@@ -12,7 +12,8 @@ This project implements a **machine learning (ML) pipeline** using high-throughp
 - Feature importance analysis (Permutation + SHAP)
 - Hyper-parameter tuning support using grid search method
 - Data visualization and publication-ready plots
-- CI/CD pipelines using GitHub Actions and Docker-image building/deploying
+- CI/CD using GitHub Actions for automated training/inference
+- Model building, containerizing, and deploying using Docker
 
 
 ## Project Structure

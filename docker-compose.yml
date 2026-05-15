@@ -1,0 +1,13 @@
+services:
+  nanopore-ml:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: full-nanopore-ml-pipeline:local
+    container_name: full-nanopore-ml-pipeline
+    working_dir: /app
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+      - ./datasets:/app/datasets:ro
+      - ./results:/app/results
+    command: ["python", "main.py"]

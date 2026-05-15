@@ -1,7 +1,7 @@
 """
 The main entry point of the full ML pipeline, integrating data loading, data preprocessing, 
-principal component analysis (PCA), optional SHAP analysis, model training/validation/prediction,
-optional hyperparameter tuning, data visualisation, and CI/CD using Github Actions.
+principal component analysis (PCA), feature analysis using SHAP (optional), model training/validation/prediction,
+model hyperparameter tuning (optional), data visualisation, and CI/CD using Github Actions.
 """
 
 from __future__ import annotations
